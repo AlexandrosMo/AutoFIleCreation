@@ -3,7 +3,9 @@ name: CreateFolders CI
 on: 
   push:
     branches:
-     - master
+       - master
+  schedule:
+       - cron: '0 12 1 * *'
 
 jobs:
   build:
@@ -14,12 +16,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - name: set up python
+      - name: set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       - name: Run CreateFolders script
         run: python CreateFolders.py
-    on:
-      schedule:
-        - cron: 0 12 1 * *
+      
